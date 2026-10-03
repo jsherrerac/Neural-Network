@@ -12,14 +12,11 @@ class Neuron:
     
 class Network:
     def __init__(self, sizes):
-        self.sizes= sizes
-        self.weights= [np.random.randn(15,784), np.random.randn(10,15)]
-        self.biases= [np.random.randn(15),np.random.randn(10)]
+        self.sizes= sizes 
+        self.weights= [np.random.randn(sizes[1],sizes[0]), np.random.randn(sizes[2],sizes[1])]
+        self.biases= [np.random.randn(sizes[1]),np.random.randn(sizes[2])]
         
     def feedforward(self, a):
         for w,b in zip(self.weights, self.biases):
             a=sigmoid(w@a + b)
         return a
-net = Network([784, 15, 10])
-salida = net.feedforward(np.random.rand(784))
-print(salida.shape)
